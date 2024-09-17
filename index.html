@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Último Refugio</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <!-- Hoja de Estilo Personalizada -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>El Último Refugio</h1>
+
+        <!-- Escena 1 -->
+        <div id="section1" class="section-content">
+            <h2>Escena 1: La Entrada de la Mansión</h2>
+            <p>Bajo la lluvia torrencial, el grupo llega exhausto a la puerta de una mansión...</p>
+            <form id="form1">
+                <div class="form-check custom-radio">
+                    <input type="radio" class="form-check-input" name="scene1" id="option1" value="1">
+                    <label class="form-check-label" for="option1">Entrar directamente por la puerta principal.</label>
+                </div>
+                <div class="form-check custom-radio">
+                    <input type="radio" class="form-check-input" name="scene1" id="option2" value="2">
+                    <label class="form-check-label" for="option2">Buscar una ventana rota para entrar.</label>
+                </div>
+                <div class="form-check custom-radio">
+                    <input type="radio" class="form-check-input" name="scene1" id="option3" value="3">
+                    <label class="form-check-label" for="option3">Intentar bloquear la entrada para ganar tiempo.</label>
+                </div>
+                <button type="button" class="btn btn-danger btn-confirm" id="confirmButton1" onclick="handleConfirm(1)">Confirmar</button>
+            </form>
+        </div>
+
+        <!-- Escena 2 -->
+        <div id="section2" class="section-content hidden">
+            <h2>Escena 2: El Pasillo Principal</h2>
+            <p>Aquellos que lograron entrar por la ventana ahora están dentro de la mansión...</p>
+            <form id="form2">
+                <div class="form-check custom-radio">
+                    <input type="radio" class="form-check-input" name="scene2" id="option4" value="1">
+                    <label class="form-check-label" for="option4">Abrir la puerta de donde proviene el ruido.</label>
+                </div>
+                <div class="form-check custom-radio">
+                    <input type="radio" class="form-check-input" name="scene2" id="option5" value="2">
+                    <label class="form-check-label" for="option5">Subir las escaleras para investigar el segundo piso.</label>
+                </div>
+                <div class="form-check custom-radio">
+                    <input type="radio" class="form-check-input" name="scene2" id="option6" value="3">
+                    <label class="form-check-label" for="option6">Entrar en una de las otras habitaciones del pasillo.</label>
+                </div>
+                <button type="button" class="btn btn-danger btn-confirm" id="confirmButton2" onclick="handleConfirm(2)">Confirmar</button>
+            </form>
+        </div>
+
+        <!-- Escena 3 -->
+        <div id="section3" class="section-content hidden">
+            <h2>Escena 3: La Sala de Calderas</h2>
+            <p>El grupo que sobrevive se dirige al sótano buscando una vía de escape...</p>
+            <form id="form3">
+                <div class="form-check custom-radio">
+                    <input type="radio" class="form-check-input" name="scene3" id="option7" value="1">
+                    <label class="form-check-label" for="option7">Atravesar la sala rápidamente hacia la puerta metálica.</label>
+                </div>
+                <div class="form-check custom-radio">
+                    <input type="radio" class="form-check-input" name="scene3" id="option8" value="2">
+                    <label class="form-check-label" for="option8">Explorar la sala de calderas en busca de una ruta alternativa.</label>
+                </div>
+                <div class="form-check custom-radio">
+                    <input type="radio" class="form-check-input" name="scene3" id="option9" value="3">
+                    <label class="form-check-label" for="option9">Atrancar las puertas de la sala para ganar tiempo.</label>
+                </div>
+                <button type="button" class="btn btn-danger btn-confirm" id="confirmButton3" onclick="handleConfirm(3)">Confirmar</button>
+            </form>
+        </div>
+
+        <!-- Escena 4 -->
+        <div id="section4" class="section-content hidden">
+            <h2>Escena 4: Los Túneles Subterráneos</h2>
+            <p>Aquellos que lograron escapar por el conducto de ventilación emergen en un viejo sistema de túneles subterráneos...</p>
+            <form id="form4">
+                <div class="form-check custom-radio">
+                    <input type="radio" class="form-check-input" name="scene4" id="option10" value="1">
+                    <label class="form-check-label" for="option10">Seguir el túnel que parece dirigirse hacia la superficie.</label>
+                </div>
+                <div class="form-check custom-radio">
+                    <input type="radio" class="form-check-input" name="scene4" id="option11" value="2">
+                    <label class="form-check-label" for="option11">Tomar el túnel más oscuro para evitar ser detectados.</label>
+                </div>
+                <div class="form-check custom-radio">
+                    <input type="radio" class="form-check-input" name="scene4" id="option12" value="3">
+                    <label class="form-check-label" for="option12">Dividirse para cubrir más terreno y encontrar una salida.</label>
+                </div>
+                <button type="button" class="btn btn-danger btn-confirm" id="confirmButton4" onclick="handleConfirm(4)">Confirmar</button>
+            </form>
+        </div>
+
+        <!-- Resultados -->
+        <div id="result-death" class="result hidden">
+            <h2>¡Game Over!</h2>
+            <p>Has llegado al final de tu viaje. Lamentablemente, tu grupo no logró sobrevivir.</p>
+        </div>
+        <div id="result-survival" class="result hidden">
+            <h2>¡Felicidades!</h2>
+            <p>Tu grupo ha logrado sobrevivir todas las pruebas. ¡Has encontrado el último refugio!</p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+    <script>
+        function showNextSection(current, next) {
+            document.getElementById(`section${current}`).classList.add('hidden');
+            document.getElementById(`section${next}`).classList.remove('hidden');
+            disableConfirmButton(next);
+        }
+
+        function handleConfirm(section) {
+            const selectedOption = document.querySelector(`input[name="scene${section}"]:checked`);
+
+            if (!selectedOption) {
+                return; // No option selected, do nothing
+            }
+
+            const value = selectedOption.value;
+
+            if (section === 1) {
+                if (value === '2') {
+                    showNextSection(1, 2);
+                } else {
+                    document.getElementById(`section${section}`).classList.add('hidden');
+                    document.getElementById('result-death').classList.remove('hidden');
+                }
+            } else if (section === 2) {
+                if (value === '2') {
+                    showNextSection(2, 3);
+                } else {
+                    document.getElementById(`section${section}`).classList.add('hidden');
+                    document.getElementById('result-death').classList.remove('hidden');
+                }
+            } else if (section === 3) {
+                if (value === '2') {
+                    showNextSection(3, 4);
+                } else {
+                    document.getElementById(`section${section}`).classList.add('hidden');
+                    document.getElementById('result-death').classList.remove('hidden');
+                }
+            } else if (section === 4) {
+                if (value === '1' || value === '3') {
+                    document.getElementById(`section${section}`).classList.add('hidden');
+                    document.getElementById('result-survival').classList.remove('hidden');
+                } else if (value === '2') {
+                    document.getElementById(`section${section}`).classList.add('hidden');
+                    document.getElementById('result-death').classList.remove('hidden');
+                }
+            }
+        }
+
+        function disableConfirmButton(section) {
+            document.getElementById(`confirmButton${section}`).disabled = true;
+            document.querySelectorAll(`input[name="scene${section}"]`).forEach(input => {
+                input.addEventListener('change', () => {
+                    document.getElementById(`confirmButton${section}`).disabled = false;
+                });
+            });
+        }
+
+        disableConfirmButton(1);
+    </script>
+</body>
+</html>
